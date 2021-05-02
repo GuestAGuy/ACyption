@@ -148,10 +148,10 @@ void encrypt()
     string responds, file_name1, file_name2, key;
     ifstream infile;
     ifstream infile2;
+    cin.ignore();
     cout << "\nEnter the file you want to encrypt: ";
     do
     {
-        cin.ignore();
         getline(cin, file_name1);
         infile.open(file_name1);
         if (!infile)
@@ -163,7 +163,6 @@ void encrypt()
     cout << "\nEnter the file you want to save the encrypted data in: " << endl;
     do
     {
-        cin.ignore();
         getline(cin, file_name2);
         infile2.open(file_name2);
         if (!infile2)
@@ -193,10 +192,10 @@ void decrypt()
     string responds, file_name1, file_name2, key;
     ifstream infile;
     ifstream infile2;
+    cin.ignore();
     cout << "\nEnter the file you want to decrypt: ";
     do
     {
-        cin.ignore();
         getline(cin, file_name1);
         infile.open(file_name1);
         if (!infile)
@@ -208,7 +207,6 @@ void decrypt()
     cout << "\nEnter the file you want to save the decrypted data in: " << endl;
     do
     {
-        cin.ignore();
         getline(cin, file_name2);
         infile2.open(file_name2);
         if (!infile2)
@@ -247,7 +245,6 @@ void driver()
         {
             decrypt();
         }
-        responds = "NULL";
         cin.ignore();
     }
 }
