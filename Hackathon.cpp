@@ -257,8 +257,8 @@ void driver()
 
 int main()
 {
-    enCryptS("Key", "Text.txt", "eText.txt");
-    deCryptS("Key", "eText.txt", "deText.txt");
-    //driver();      
+    //enCryptS("Key", "Text.txt", "eText.txt");
+    //deCryptS("Key", "eText.txt", "deText.txt");
+    driver();      
 }
 
