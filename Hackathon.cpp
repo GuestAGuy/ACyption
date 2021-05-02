@@ -42,8 +42,8 @@ char* enCodeS(string key, char* bin)
     {
         for (int j = 0; j < key1; j++)
         {
-            char temp = bin[1];
-            for (int i = 1; i < 7; i++)
+            char temp = bin[0];
+            for (int i = 0; i < 7; i++)
             {
                 bin[i] = bin[i+1];
             }
@@ -55,11 +55,11 @@ char* enCodeS(string key, char* bin)
         for (int j = 0; j < key1; j++)
         {
             char temp = bin[7];
-            for (int i = 7; i > 1; i--)
+            for (int i = 7; i > 0; i--)
             {
                 bin[i] = bin[i-1];
             }
-            bin[1] = temp;
+            bin[0] = temp;
         }
     }
     return bin;
@@ -74,8 +74,8 @@ char* deCodeS(string key, char* bin)
     {
         for (int j = 0; j < key1; j++)
         {
-            char temp = bin[1];
-            for (int i = 1; i < 7; i++)
+            char temp = bin[0];
+            for (int i = 0; i < 7; i++)
             {
                 bin[i] = bin[i + 1];
             }
@@ -87,11 +87,11 @@ char* deCodeS(string key, char* bin)
         for (int j = 0; j < key1; j++)
         {
             char temp = bin[7];
-            for (int i = 7; i > 1; i--)
+            for (int i = 7; i > 0; i--)
             {
                 bin[i] = bin[i - 1];
             }
-            bin[1] = temp;
+            bin[0] = temp;
         }
     }
     return bin;
@@ -106,16 +106,13 @@ void enCryptS(string key, string file_name, string eFile_name)
     ofstream eFile;
     file.open(file_name);
     eFile.open(eFile_name);
-    cout << "file opened" << endl;
     char aChar;
     char bin[8];
     while (file >> noskipws >> aChar)
     {
         CtB(bin, aChar);
         enCodeS(key, bin);
-        cout << " running" << endl;
-        for(int i = 0; i < 8; i++)
-            eFile << bin[i];
+        eFile << BtC(bin);
     }
     cout << "Encrypt Finished!" << endl;
 }
@@ -135,13 +132,8 @@ void deCryptS(string key, string eFile_name, string file_name)
     int i = 0;
     while (eFile >> noskipws >> aChar)
     {
-        bin[i] = aChar;
-        i++;
-        if (i > 7)
-        {
-            i = 0;
-            file << BtC(deCodeS(key, bin));
-        }
+        CtB(bin, aChar);
+        file << BtC(deCodeS(key, bin));
     }
     cout << "Decrypt Finished!" << endl;
 }
@@ -257,8 +249,8 @@ void driver()
 
 int main()
 {
-    //enCryptS("Key", "Text.txt", "eText.txt");
-    //deCryptS("Key", "eText.txt", "deText.txt");
-    driver();      
+    enCryptS("SKey", "deText.txt", "eText.txt");
+    deCryptS("FKey", "eText.txt", "deText.txt");
+    //driver();      
 }
 
